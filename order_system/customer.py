@@ -65,7 +65,7 @@ class Customer(UniqueIdMixin):
     @discount.setter
     def discount(self, value: Optional[float]):
         if value is not None and (
-            not isinstance(value, (int, float)) or not 0 <= value <= 1
+            not isinstance(value, (int, float)) or isinstance(value, bool) or not 0 <= value <= 1
         ):
             raise InvalidValueError("Discount must be None or a number between 0 and 1 (e.g. 0.05 = 5%)")
         self.__discount = value
