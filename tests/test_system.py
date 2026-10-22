@@ -103,9 +103,9 @@ class TestGifts(BaseTest):
             self.assertFalse(self.reg.open_gift())
 
     def test_any_gift_type_with_open_gift(self):
-        class CustomGift(Gift):
+        class CustomGift:
             def open_gift(self):
-                print("custom")
+                print("Congratulations! you got a new gift! Enjoy!")
         self.reg.take_gift(CustomGift())
         self.reg.take_gift(ChocolateBox())
 
