@@ -38,9 +38,10 @@ python -m unittest discover -s tests -t .
   favorites. Items are compared by name (case-insensitive), so two items with
   the same name and different ids are the same item. Customers can add and
   remove favorites; the list is exposed as a copy to protect encapsulation.
-- **Gift** is an interface (ABC with abstract `open_gift()`), so a gift can be
-  of any type as long as it implements it. `take_gift(gift)` stores it and
-  `open_gift()` opens it if the customer has one.
+- **Gift** is an interface (`typing.Protocol`, runtime-checkable), so a gift
+  can be of any type as long as it has an `open_gift()` method, with no
+  inheritance required. `take_gift(gift)` stores it and `open_gift()` opens
+  it if the customer has one.
 - **Bonus**: `#legs` in the UML is protected (`_legs`). Python has no method
   overloading, so `Cat(name)` and `Cat()` are one constructor with a default
   value. `Fish` overrides `walk()` because it has no legs.
