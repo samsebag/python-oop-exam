@@ -27,7 +27,7 @@ python -m unittest discover -s tests -t .
 ### Design decisions
 - **Order** is an abstract class. Its constructor calls the abstract method
   `calculate_total_price()`, implemented by `RegularOrder` (sum of item prices)
-  and `VipOrder` (sum minus the customer's discount, in percent).
+  and `VipOrder` (sum minus the customer's discount, a number between 0 and 1, e.g. 0.05 = 5%).
 - **VipOrder** checks that the customer is VIP *before* calculating the price,
   otherwise it raises `NotVipCustomerError`.
 - A customer `discount` can be `None`; a VIP with no discount pays full price.
