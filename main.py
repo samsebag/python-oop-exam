@@ -9,7 +9,7 @@ from bonus import Cat, Fish, Spider
 def main():
     print("=== Customers ===")
     dana = Customer(1, "Dana", "Cohen", "dana@mail.com", "Tel Aviv",
-                    CustomerType.VIP, discount=10)
+                    CustomerType.VIP, discount=0.1)
     yossi = Customer(2, "Yossi", "Levi", "yossi@mail.com", "Haifa")
     print(dana, yossi, sep="\n")
 
