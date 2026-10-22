@@ -109,4 +109,4 @@ class VipOrder(Order):
                 f"and cannot make a VIP order"
             )
         discount = self.customer.discount or 0  # discount can be None
-        return round(self._items_sum() * (1 - discount / 100), 2)
+        return round(self._items_sum() * (1 - discount), 2)
