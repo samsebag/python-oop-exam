@@ -15,7 +15,7 @@ class BaseTest(unittest.TestCase):
         Item._reset_ids()
         Customer._reset_ids()
         Order._reset_ids()
-        self.vip = Customer(1, "Dana", "Cohen", "d@m.com", "TLV", CustomerType.VIP, 20)
+        self.vip = Customer(1, "Dana", "Cohen", "d@m.com", "TLV", CustomerType.VIP, 0.2)
         self.reg = Customer(2, "Yossi", "Levi", "y@m.com", "Haifa")
         self.a = Item(1, "Book", 50)
         self.b = Item(2, "Pen", 10)
