@@ -1,15 +1,16 @@
-from abc import ABC, abstractmethod
+from typing import Protocol, runtime_checkable
 
 
-class Gift(ABC):
+@runtime_checkable
+class Gift(Protocol):
     """
     Interface for customer gifts.
-    A gift can be of any type, but it must implement open_gift().
+    A gift can be of ANY type, as long as it has an open_gift() method
+    (duck typing - no inheritance required).
     """
 
-    @abstractmethod
-    def open_gift(self):
-        pass
+    def open_gift(self) -> None:
+        ...
 
 
 class BaseGift(Gift):
