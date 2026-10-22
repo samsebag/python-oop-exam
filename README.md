@@ -44,3 +44,78 @@ python -m unittest discover -s tests -t .
 - **Bonus**: `#legs` in the UML is protected (`_legs`). Python has no method
   overloading, so `Cat(name)` and `Cat()` are one constructor with a default
   value. `Fish` overrides `walk()` because it has no legs.
+
+
+### Class diagram
+```mermaid
+classDiagram
+    class Item {
+        +id
+        +name: str
+        +price: float
+    }
+    class Gift {
+        <<interface>>
+        +open_gift()*
+    }
+    class BaseGift {
+        +open_gift()
+    }
+    class Customer {
+        +id
+        +first_name: str
+        +last_name: str
+        +email: str
+        +delivery_address: str
+        +customer_type: CustomerType
+        +discount: float
+        +favorite_items: list~Item~
+        +gift: Gift
+        +add_favorite_item(item)
+        +remove_favorite_item(name)
+        +take_gift(gift)
+        +open_gift()
+    }
+    class Order {
+        <<abstract>>
+        +id
+        +name: str
+        +delivery_address: str
+        +items: list~Item~
+        +customer: Customer
+        +total_price: float
+        +payment_type: PaymentType
+        +order_date: datetime
+        +calculate_total_price()*
+    }
+    class RegularOrder {
+        +calculate_total_price()
+    }
+    class VipOrder {
+        +calculate_total_price()
+    }
+    class PaymentType {
+        <<enumeration>>
+        CREDIT_CARD
+        CASH
+        CHECK
+        OTHER
+    }
+    class CustomerType {
+        <<enumeration>>
+        REGULAR
+        VIP
+    }
+    Gift <|.. BaseGift
+    BaseGift <|-- GiftCard
+    BaseGift <|-- FlowersGift
+    BaseGift <|-- ChocolateBox
+    Order <|-- RegularOrder
+    Order <|-- VipOrder
+    Order o-- "1..*" Item
+    Order --> Customer
+    Order --> PaymentType
+    Customer --> CustomerType
+    Customer o-- "*" Item : favorites
+    Customer o-- "0..1" Gift
+```
